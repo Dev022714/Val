@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congrats! 🎉</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +17,7 @@
             height: 100vh;
             margin: 0;
             color: white;
-            overflow: hidden; /* Prevents scrollbars when hearts appear */
+            overflow: hidden;
         }
         .container {
             background: white;
@@ -69,10 +70,38 @@
     <img src="watsons.png" alt="Watsons Logo">
     <h1>🎉 Congrats! You won ₱1,000 worth of Watsons gift card! 🎁</h1>
     <p>Can be claimed on Feb 14. 💕<br> Happy Valentines Babi! 🥰</p>
-    <p class="heart" onclick="createHearts()">❤️</p>
+    <p class="heart" onclick="createHearts(); startConfetti();">❤️</p>
 </div>
 
 <script>
+    // 🎉 Confetti when page loads
+    window.onload = function() {
+        startConfetti();
+    };
+
+    function startConfetti() {
+        confetti({
+            particleCount: 100, // Number of confetti particles
+            spread: 70,         // Spread of the confetti
+            origin: { y: 0.6 }  // Start position
+        });
+
+        // Burst effect every 1 second for 5 times
+        let count = 0;
+        let interval = setInterval(() => {
+            if (count >= 5) {
+                clearInterval(interval);
+            } else {
+                confetti({
+                    particleCount: 50,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+                count++;
+            }
+        }, 1000);
+    }
+
     function createHearts() {
         for (let i = 0; i < 10; i++) { // Create multiple hearts
             setTimeout(() => {
