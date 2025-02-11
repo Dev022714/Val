@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, mediumpurple, #9A4EAE);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+        }
+        .heart {
+            font-size: 50px;
+            animation: heartbeat 1s infinite alternate;
+        }
+        @keyframes heartbeat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #ff1e50;
+        }
+        .no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+            transition: 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will you be my Valentine? 💖</h1>
+    <p class="heart">❤️</p>
+    <div class="buttons">
+        <button class="yes" onclick="showSurprise()">Yes</button>
+        <button class="no" onmouseover="moveButton()">No</button>
+    </div>
+</div>
+
+<script>
+    function moveButton() {
+        const noButton = document.querySelector(".no");
+
+        const maxX = window.innerWidth * 0.8;
+        const maxY = window.innerHeight * 0.8;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noButton.style.position = "fixed";
+        noButton.style.left = `${x}px`;
+        noButton.style.top = `${y}px`;
+    }
+
+    function showSurprise() {
+        window.location.href = "congrats.html"; // Redirects to the new page
+    }
+</script>
+
+</body>
+</html>

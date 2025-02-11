@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congrats! 🎉</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #9A4EAE, mediumpurple);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            overflow: hidden; /* Prevents scrollbars when hearts appear */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            color: black;
+            position: relative;
+            z-index: 2;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #ff4d6d;
+        }
+        .heart {
+            font-size: 50px;
+            cursor: pointer;
+            animation: heartbeat 1s infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes heartbeat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        /* Floating hearts */
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            opacity: 1;
+            animation: floatUp 2s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="watsons.png" alt="Watsons Logo">
+    <h1>🎉 Congrats! You won ₱1,000 worth of Watsons gift card! 🎁</h1>
+    <p>Can be claimed on Feb 14. 💕<br> Happy Valentines Babi! 🥰</p>
+    <p class="heart" onclick="createHearts()">❤️</p>
+</div>
+
+<script>
+    function createHearts() {
+        for (let i = 0; i < 10; i++) { // Create multiple hearts
+            setTimeout(() => {
+                const heart = document.createElement("div");
+                heart.classList.add("floating-heart");
+                heart.innerHTML = "❤️";
+                document.body.appendChild(heart);
+
+                // Random position near the heart
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+
+                // Remove heart after animation
+                setTimeout(() => heart.remove(), 2000);
+            }, i * 150); // Staggered heart effect
+        }
+    }
+</script>
+
+</body>
+</html>
